@@ -22,7 +22,7 @@ public enum BrowserFactory {
         public ChromeOptions getOptions() {
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.addArguments(START_MAXIMIZED);
-            chromeOptions.addArguments(CHROME_HEADLESS);
+            //chromeOptions.addArguments(CHROME_HEADLESS);
             chromeOptions.addArguments("--disable-infobars");
             chromeOptions.addArguments("--disable-gpu"); // Disable GPU for headless mode
             //chromeOptions.addArguments("--window-size=1920,1080"); // Set window size

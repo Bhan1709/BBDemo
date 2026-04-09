@@ -2,6 +2,7 @@ package com.bbdemo.base;
 
 import com.bbdemo.utils.ConfigManager;
 import com.bbdemo.utils.DriverFactory;
+import com.bbdemo.utils.SoftAssertManager;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -10,19 +11,16 @@ import java.util.concurrent.locks.LockSupport;
 
 public class BaseTest {
     @BeforeMethod
-    public void setUp() {
+    public void baseSetUp() {
         DriverFactory.initDriver();
-
-        DriverFactory.getDriver().get(ConfigManager.get("url_base"));
-        staticWait();
+        SoftAssertManager.initSoftAssert();
     }
 
     @AfterMethod
-    public void tearDown() {
+    public void baseTearDown() {
+        SoftAssertManager.assertAll();
         DriverFactory.quitDriver();
     }
 
-    private void staticWait() {
-        LockSupport.parkNanos(TimeUnit.SECONDS.toNanos(2));
-    }
+
 }

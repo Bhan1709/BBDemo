@@ -15,6 +15,8 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.LockSupport;
 
 public class BasePage {
     protected WebDriver driver;
@@ -142,6 +144,10 @@ public class BasePage {
         }
     }
 
+    public void staticWait() {
+        LockSupport.parkNanos(TimeUnit.SECONDS.toNanos(2));
+    }
+
     /* ======================Helpers============================= */
 
     // Method to get the description of an element using By locator
@@ -212,6 +218,23 @@ public class BasePage {
             log.info("Applied the border with color {} to element: {}", color, getElementDescription(by));
         } catch (Exception e) {
             log.warn("Failed to apply the border to an element: {}. {}", getElementDescription(by),e.getMessage());
+        }
+    }
+
+    public String getCurrentUrl(){
+        return driver.getCurrentUrl();
+    }
+
+    public boolean isDisplayed(By by) {
+        try {
+            waitForElementToBeVisible(by);
+            applyBorder(by,"green");
+            log.info("Element is displayed. {}", getElementDescription(by));
+            return driver.findElement(by).isDisplayed();
+        } catch (Exception e) {
+            applyBorder(by,"red");
+            log.error("Element failed to be displayed. {}", e.getMessage());
+            return false;
         }
     }
 }
