@@ -1,37 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration status="WARN">
-    <appenders>
+<Configuration status="WARN">
+    <Appenders>
         <!-- Console Appender -->
-        <console name="Console" target="SYSTEM_OUT">
-            <patternlayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %C{1} - %msg%n" />
-        </console>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %C{1} - %msg%n" />
+        </Console>
 
         <!-- General File Appender -->
-        <file name="FileLogger" filename="logs/app.log" append="true">
-            <filters>
+        <File name="FileLogger" filename="logs/app.log" append="true">
+            <Filters>
                 <!-- Exclude ERROR and FATAL logs -->
-                <thresholdfilter level="error" onMatch="DENY" onMismatch="ACCEPT" />
-            </filters>
-            <patternlayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %C{1} - %msg%n" />
-        </file>
+                <Thresholdfilter level="error" onMatch="DENY" onMismatch="ACCEPT" />
+            </Filters>
+            <Patternlayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %C{1} - %msg%n" />
+        </File>
 
         <!-- Error File Appender -->
-        <file name="ErrorFileLogger" filename="logs/error.log" append="true">
-            <filters>
+        <File name="ErrorFileLogger" filename="logs/error.log" append="true">
+            <Filters>
                 <!-- Include only ERROR and FATAL logs -->
-                <thresholdfilter level="error" onMatch="ACCEPT" onMismatch="DENY" />
-            </filters>
-            <patternlayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %C{1} - %msg%n" />
-        </file>
-    </appenders>
+                <Thresholdfilter level="error" onMatch="ACCEPT" onMismatch="DENY" />
+            </Filters>
+            <Patternlayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %C{1} - %msg%n" />
+        </File>
+    </Appenders>
 
-    <loggers>
+    <Loggers>
         <!-- Logger for com.demoproject (specify the package name here) -->
-        <logger name="com.orangehrm" level="trace" additivity="false">
-            <appenderref ref="Console" />
-            <appenderref ref="FileLogger" />
-            <appenderref ref="ErrorFileLogger" />
-        </logger>
+        <Logger name="com.orangehrm" level="trace" additivity="false">
+            <Root level="error">
+                <AppenderRef ref="Console" />
+                <AppenderRef ref="FileLogger" />
+                <AppenderRef ref="ErrorFileLogger" />
+            </Root>
+        </Logger>
 
-    </loggers>
-</configuration>
+    </Loggers>
+</Configuration>
