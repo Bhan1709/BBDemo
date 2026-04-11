@@ -1,0 +1,3 @@
+2026-04-10 08:36:19 [main] INFO  DriverFactory - Initializing driver. Browser: CHROME, Execution: LOCAL
+2026-04-10 08:36:21 [main] INFO  DriverFactory - WebDriver initialized successfully
+2026-04-10 08:36:22 [main] INFO  BasePage - Page loaded successfully.

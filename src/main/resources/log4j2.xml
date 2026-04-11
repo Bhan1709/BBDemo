@@ -26,14 +26,11 @@
     </Appenders>
 
     <Loggers>
-        <!-- Logger for com.demoproject (specify the package name here) -->
-        <Logger name="com.orangehrm" level="trace" additivity="false">
-            <Root level="error">
-                <AppenderRef ref="Console" />
-                <AppenderRef ref="FileLogger" />
-                <AppenderRef ref="ErrorFileLogger" />
-            </Root>
-        </Logger>
-
+        <!-- Logger for com.bbdemo -->
+        <Root name="com.orangehrm" level="trace" additivity="false">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="FileLogger" />
+            <AppenderRef ref="ErrorFileLogger" />
+        </Root>
     </Loggers>
 </Configuration>

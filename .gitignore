@@ -1,3 +1,6 @@
+logs/*
+!**/src/test/**/reports/
+!**/src/test/**/screenshots/
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
